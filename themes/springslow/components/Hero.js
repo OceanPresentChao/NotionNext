@@ -66,6 +66,8 @@ const Hero = props => {
       wrapperTop = wrapperElement?.offsetTop
     })
   }
+  console.log("@",siteConfig("SPRINGSLOW_HOME_BANNER_IMAGE"))
+  console.log("#",fallbackCover)
 
   return (
     <header
@@ -106,7 +108,7 @@ const Hero = props => {
       <LazyImage
         priority={true}
         id='header-cover'
-        src={siteInfo?.pageCover || fallbackCover}
+        src={siteConfig("SPRINGSLOW_HOME_BANNER_IMAGE", "", CONFIG)}
         className={`header-cover object-center w-full h-screen object-cover ${siteConfig('SPRINGSLOW_HOME_NAV_BACKGROUND_IMG_FIXED', null, CONFIG) ? 'fixed' : ''}`}
       />
     </header>

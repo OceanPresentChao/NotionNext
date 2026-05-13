@@ -23,12 +23,12 @@ import BlogPostArchive from './components/BlogPostArchive'
 import BlogPostListPage from './components/BlogPostListPage'
 import BlogPostListScroll from './components/BlogPostListScroll'
 import BrandStorySection from './components/BrandStorySection'
+import PortfolioHonorSection from './components/PortfolioHonorSection'
 import Card from './components/Card'
 import CatalogWrapper from './components/CatalogWrapper'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Swiper from './components/Swiper'
 import JumpToCommentButton from './components/JumpToCommentButton'
 import PostHero from './components/PostHero'
 import PortfolioCategorySection from './components/PortfolioCategorySection'
@@ -64,7 +64,7 @@ const LayoutBase = props => {
     loadWowJS()
   }, [])
   const showPortfolioHome =
-    router.route === '/' && siteConfig('SPRINGSLOW_PORTFOLIO_ENABLE', null, CONFIG)
+    router.route === '/'
   const showPortfolioAnnouncement = siteConfig(
     'SPRINGSLOW_PORTFOLIO_SHOW_ANNOUNCEMENT',
     null,
@@ -75,95 +75,13 @@ const LayoutBase = props => {
     null,
     CONFIG
   )
-  const studioEyebrow = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_STUDIO_EYEBROW',
-    '',
-    CONFIG
-  )
-  const studioTitle = siteConfig('SPRINGSLOW_PORTFOLIO_STUDIO_TITLE', '', CONFIG)
-  const studioDesc = siteConfig('SPRINGSLOW_PORTFOLIO_STUDIO_DESC', '', CONFIG)
-  const studioButtonText = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_STUDIO_BUTTON_TEXT',
-    '',
-    CONFIG
-  )
-  const studioButtonUrl = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_STUDIO_BUTTON_URL',
-    '',
-    CONFIG
-  )
-  const studioBgImage = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_STUDIO_BG_IMAGE',
-    '',
-    CONFIG
-  )
 
   const showBrandStory = siteConfig(
     'SPRINGSLOW_PORTFOLIO_SHOW_BRAND_STORY',
     null,
     CONFIG
   )
-  const brandStoryTitle = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_BRAND_STORY_TITLE',
-    '',
-    CONFIG
-  )
-  const brandStoryDesc = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_BRAND_STORY_DESC',
-    '',
-    CONFIG
-  )
-  const brandStoryFooter = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_BRAND_STORY_FOOTER',
-    '',
-    CONFIG
-  )
-  const brandStoryButtonText = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_BRAND_STORY_BUTTON_TEXT',
-    '',
-    CONFIG
-  )
-  const brandStoryButtonUrl = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_BRAND_STORY_BUTTON_URL',
-    '',
-    CONFIG
-  )
-  const brandStoryImage1 = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_BRAND_STORY_IMAGE_1',
-    '',
-    CONFIG
-  )
-  const brandStoryImage2 = siteConfig(
-    'SPRINGSLOW_PORTFOLIO_BRAND_STORY_IMAGE_2',
-    '',
-    CONFIG
-  )
 
-  const containerSlot =
-    router.route === '/' ? (
-      showPortfolioHome && (
-        <>
-          {showPortfolioAnnouncement && (
-            <Announcement {...props} />
-          )}
-          {showPortfolioHome && showBrandStory && (
-            <BrandStorySection
-              title={brandStoryTitle}
-              description={brandStoryDesc}
-              footer={brandStoryFooter}
-              buttonText={brandStoryButtonText}
-              buttonLink={brandStoryButtonUrl}
-              imagePrimary={brandStoryImage1 || siteInfo?.pageCover}
-              imageSecondary={brandStoryImage2 || siteInfo?.pageCover}
-            />
-          )}
-        </>
-      )
-    ) : (
-      <>
-        {/* <BlogListBar {...props} /> */}
-      </>
-    )
   const headerSlot =
     siteConfig('SPRINGSLOW_HOME_BANNER_ENABLE', null, CONFIG) &&
       router.route === '/' ? (
@@ -197,11 +115,17 @@ const LayoutBase = props => {
           <div
             id='container-slot'
             className={`w-full ${fullWidth ? '' : 'max-w-6xl'} ${post && ' lg:max-w-3xl 2xl:max-w-4xl '} mt-6 px-3 mx-auto lg:flex lg:space-x-4 justify-center relative z-10`}>
-            {containerSlot}
+              {showPortfolioHome && showPortfolioAnnouncement && (
+                <Announcement {...props} />
+              )}
+
+              {showPortfolioHome && showBrandStory && (
+                <BrandStorySection/>
+              )}
           </div>
 
           {showPortfolioHome && (
-            <PricePostList {...props} />
+            <PortfolioHonorSection {...props} />
           )}
 
           <div
@@ -211,14 +135,7 @@ const LayoutBase = props => {
           </div>
 
           {showPortfolioHome && showStudioIntro && (
-            <StudioIntroSection
-              eyebrow={studioEyebrow}
-              title={studioTitle}
-              description={studioDesc}
-              buttonText={studioButtonText}
-              buttonLink={studioButtonUrl}
-              backgroundImage={studioBgImage || siteInfo?.pageCover}
-            />
+            <StudioIntroSection/>
           )}
         </main>
 
@@ -278,18 +195,6 @@ const LayoutPostList = props => {
       ) : (
         <BlogPostListScroll {...props} />
       )}
-    </div>
-  )
-}
-
-const PricePostList = props => {
-  const new_posts = props.posts.filter(post=>{
-    // console.log(post)
-    return post.tags.includes("杰出作品")
-  })
-  return (
-    <div>
-      <Swiper {...props} posts={new_posts} />
     </div>
   )
 }
@@ -607,7 +512,7 @@ const LayoutCategoryIndex = props => {
 
   return (
     <div id='inner-wrapper' className='w-full'>
-      <div className='drop-shadow-xl mt-8 rounded-md mx-3 px-5 lg:border lg:rounded-xl lg:px-2 lg:py-4 bg-white dark:bg-hexo-black-gray  dark:border-black dark:text-gray-300'>
+      {/* <div className='drop-shadow-xl mt-8 rounded-md mx-3 px-5 lg:border lg:rounded-xl lg:px-2 lg:py-4 bg-white dark:bg-hexo-black-gray  dark:border-black dark:text-gray-300'>
         <div className='flex justify-center flex-wrap'>
           {categoryOptions?.map(e => {
             return (
@@ -616,14 +521,15 @@ const LayoutCategoryIndex = props => {
                 href={`/category/${e.name}`}
                 passHref
                 legacyBehavior>
-                <div className='duration-300 text-md whitespace-nowrap dark:hover:text-white px-5 cursor-pointer py-2 hover:text-indigo-400'>
+                <div className='duration-300 text-md whitespace-nowrap dark:hover:text-white px-5 cursor-pointer py-2 hover:text-green-400'>
                   <i className={'mr-4 fas fa-folder'} /> {e.name}({e.count})
                 </div>
               </SmartLink>
             )
           })}
         </div>
-      </div>
+      </div> */}
+      <PortfolioCategorySection {...props} />
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import SmartLink from '@/components/SmartLink'
 import LazyImage from '@/components/LazyImage'
 import Card from './Card'
+import CONFIG from '../config'
+import { siteConfig } from '@/lib/config'
 
 /**
  * 作品集首页分类入口（动态读取 Notion 分类）
@@ -10,14 +12,17 @@ const PortfolioCategorySection = ({ categoryOptions = [], allNavPages = [], site
     return <></>
   }
 
+  const title = siteConfig('SPRINGSLOW_PORTFOLIO_CATEGORY_TITLE', '', CONFIG)
+  const desc = siteConfig('SPRINGSLOW_PORTFOLIO_CATEGORY_DESC', '', CONFIG)
+
   return (
     <Card className='w-full mt-8'>
       <div className='px-1 py-2'>
         <div className='text-2xl md:text-3xl font-semibold text-center'>
-          Our Story
+          {title}
         </div>
-        <div className='text-center text-sm text-gray-500 dark:text-gray-400 mt-2'>
-          With love and gratitude, we invite you to share in the joy of our story
+        <div className='text-center text-gray-500 dark:text-gray-400 mt-2'>
+          {desc}
         </div>
 
         <div className='mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4'>
@@ -58,7 +63,7 @@ const PortfolioCategorySection = ({ categoryOptions = [], allNavPages = [], site
                     <div className='text-gray-500 dark:text-gray-400'>
                       {coverPost?.title ? `代表作品：${coverPost.title}` : '查看该分类全部作品'}
                     </div>
-                    <div className='text-indigo-600 dark:text-indigo-400 font-semibold'>
+                    <div className='text-green-600 dark:text-green-400 font-semibold'>
                       {category.count}
                     </div>
                   </div> */}

@@ -173,7 +173,7 @@ const Header = props => {
 
       <style jsx global>{`
         #theme-springslow #sticky-nav.springslow-wedding-nav {
-          background: rgba(68, 66, 62, 0.8);
+          background: rgb(120 156 152 / 70%);
           backdrop-filter: blur(2px);
         }
 

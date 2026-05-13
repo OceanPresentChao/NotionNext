@@ -94,7 +94,7 @@ const InertiaCarousel = ({ posts }) => {
       {posts &&
         posts?.map((post, index) => (
           <PostItemCard
-            className='min-w-[80vw] md:min-w-[50vw]  w-full flex items-end justify-center'
+            className='min-w-[60vw] md:min-w-[30vw] w-full flex items-end justify-center'
             key={index}
             post={post}
           />

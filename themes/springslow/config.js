@@ -4,7 +4,7 @@ const CONFIG = {
   SPRINGSLOW_PORTFOLIO_BRAND_TITLE: '春天树工作室', // 首页品牌主标题
   SPRINGSLOW_PORTFOLIO_BRAND_SUBTITLE: 'AIGC × 品牌形象 × 政府项目 × 艺术影像', // 首页品牌副标题
   SPRINGSLOW_PORTFOLIO_START_TEXT: '进入作品集', // 首页滚动按钮文案
-  SPRINGSLOW_PORTFOLIO_HONOR_TAG: '荣誉', // 荣誉作品筛选标签
+  SPRINGSLOW_TOP_TAG: '杰出作品', // 荣誉作品筛选标签
   SPRINGSLOW_PORTFOLIO_HONOR_LIMIT: 6, // 荣誉作品展示数量
   SPRINGSLOW_PORTFOLIO_SHOW_HONOR: true, // 显示荣誉前置区
   SPRINGSLOW_PORTFOLIO_SHOW_CATEGORY_ENTRY: true, // 显示分类入口区
@@ -22,7 +22,8 @@ const CONFIG = {
   SPRINGSLOW_PORTFOLIO_BRAND_STORY_BUTTON_URL: '/about', // 品牌故事按钮链接
   SPRINGSLOW_PORTFOLIO_BRAND_STORY_IMAGE_1: '', // 品牌故事图片1
   SPRINGSLOW_PORTFOLIO_BRAND_STORY_IMAGE_2: '', // 品牌故事图片2
-  SPRINGSLOW_PORTFOLIO_HERO_FALLBACK_COVER: '', // 首页头图兜底
+  SPRINGSLOW_PORTFOLIO_HERO_FALLBACK_COVER: 'https://handsome-death-370.notion.site/images/page-cover/texturelabs_metal_261S.jpg', // 首页头图兜底
+  SPRINGSLOW_HOME_BANNER_IMAGE: "/bg_image.jpg",
   SPRINGSLOW_HOME_BANNER_ENABLE: true,
   // 3.14.1以后的版本中，欢迎语在blog.config.js中配置，用英文逗号','隔开多个。
   SPRINGSLOW_HOME_BANNER_GREETINGS: [
